@@ -12,5 +12,5 @@ urlpatterns = [
     path('pesron/<int:id>/', mainapp.person, name='person'),
     path('serch/', mainapp.serch, name='serch'),
     path('create/', mainapp.create, name='create'),
-    path('edit/', mainapp.edit, name='edit')
+    path('edit/<int:id>/', mainapp.edit, name='edit')
 ]

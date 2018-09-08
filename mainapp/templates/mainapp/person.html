@@ -3,14 +3,17 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div>
-        <p>{{ person.name }}</p>
-        <p>{{ person.dob }}</p>
-        <p>{{ person.sex }}</p>
-        <p>{{ person.cellphone_number }}</p>
-        <p>{{ person.start_of_studying }}</p>
-        <p>{{ person.end_of_studying }}</p>
-        <p>{{ person.group }}</p>
-        <p>{{ person.university_name }}</p>
+    <div class="jumbotron">
+        <p>Имя - {{ person.name }}</p>
+        <p>Дата рождения - {{ person.dob }}</p>
+        <p>Пол - {{ person.sex }}</p>
+        <p>Номер телефона - {{ person.cellphone_number }}</p>
+        <p>Начало обучения - {{ person.start_of_studying }}</p>
+        <p>Окончание обучения - {{ person.end_of_studying }}</p>
+        <p>Группа в университете - {{ person.group }}</p>
+        <p>Университет - <br>{{ person.university_name }}</p>
+        <button class="btn btn-outline-success my-2 my-sm-0"
+                onclick=location.href='{% url 'mainapp:edit' person.id %}'>Редактировать</button><br><br>
+        <button class="btn btn-primary" onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
     </div>
 {% endblock %}

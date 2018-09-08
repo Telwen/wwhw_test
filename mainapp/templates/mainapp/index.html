@@ -3,18 +3,16 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div calss="header">
-        <form action="{% url 'mainapp:generate' %}"
-              method='post' enctype="multipart/form-data">
-            {% csrf_token %}
-            {{quantity}}
-            <br>
-            <input type='submit' value='Сгенерировать персон'>
-        </form>
-        <br>
-
-        <button onclick=location.href="{% url 'mainapp:create' %}">Создать персону</button>
-    </div>
+            <nav class="navbar navbar-light bg-light">
+              <form class="form-inline" action="{% url 'mainapp:generate' %}"#}
+{#                  method='post' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ quantity }}
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Сгенерировать персон</button>
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick=location.href="{% url 'mainapp:create' %}">Создать персону</button>
+              </form>
+            </nav>
+            </form>
     <br>
     <div class="container">
         <div class="person_holder">
@@ -48,7 +46,7 @@
               method='post' enctype="multipart/form-data">
             {{serch_bar.as_p}}
             <br>
-            <input type='submit' value='Поиск'>
+            <button class="btn btn-info" type="submit">Поиск</button>
         </form>
         </div>
 

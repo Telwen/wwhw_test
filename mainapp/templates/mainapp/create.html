@@ -3,14 +3,16 @@
 {% load staticfiles %}
 
 {% block content %}
-    <form action="{% url 'mainapp:create' %}" "
-          method='post' enctype="multipart/form-data">
-        {% csrf_token %}
+    <div class="jumbotron">
+        <form action="{% url 'mainapp:create' %}""
+              method='post' enctype="multipart/form-data">
+            {% csrf_token %}
 
-        {{create_form.as_p}}
+            {{create_form.as_p}}
 
 
-        <br>
-        <input type='submit'  value='Создать пользователя'><br><br>
-        <button onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
+            <br>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Создать пользователя</button><br><br>
+            <button class="btn btn-primary" onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
+    </div>
 {% endblock %}

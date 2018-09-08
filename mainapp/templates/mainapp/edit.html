@@ -3,5 +3,15 @@
 {% load staticfiles %}
 
 {% block content %}
-    хуй
+    <div class="jumbotron">
+        <form action="{% url 'mainapp:edit' person.id %}"
+              method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{edit_form.as_p}}
+
+            <br>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" formmethod="post">Сохранить изменения</button><br><br>
+            <button class="btn btn-primary" onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
+    </div>
 {% endblock %}

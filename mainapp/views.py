@@ -40,7 +40,7 @@ def generate(request):
                 rec = Person(
                     name=genreric_info.person.full_name(),
                     dob=genreric_info.datetime.datetime(start=1980, end=2000),
-                    sex=g,
+                    sex=g[0],
                     cellphone_number=genreric_info.person.telephone(),
                     start_of_studying=start_of_stud,
                     end_of_studying=start_of_stud + datetime.timedelta(days=(365 * 4)),
@@ -64,8 +64,20 @@ def person(request, id):
     return render(request, 'mainapp/person.html', context)
 
 
-def edit(request):
-    return render(request, 'mainapp/edit.html')
+def edit(request, id):
+    person= get_object_or_404(Person, id=id)
+    if request.method == 'POST':
+        edit_form = PersonCreateForm(request.POST, instance=person)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('mainapp:index'))
+    else:
+        edit_form = PersonCreateForm(instance=person)
+    context = {
+        'person': person,
+        'edit_form': edit_form
+    }
+    return render(request, 'mainapp/edit.html', context)
 
 
 def create(request):

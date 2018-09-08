@@ -1,39 +1,24 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from .models import Person
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.forms import ModelForm
 
 
 class Quantity(forms.Form):
     number = forms.CharField()
+    number.widget.attrs['class'] = 'form-control'
+    number.help_text = ''
 
 
-class SerchBar(forms.Form):
-    SEX = (
-        ('Male', 'Male'),
-        ('Female', 'Female')
-    )
-    full_name = forms.CharField()
-    date_of_birth = forms.DateField()
-    sex = forms.ChoiceField(choices=SEX)
-    cellphone_number = forms.CharField()
-    start_of_studying = forms.DateField()
-    end_of_studying = forms.DateField()
-    studing_group = forms.CharField()
-    university_name = forms.CharField()
-    passport_number = forms.CharField()
+class SerchBar(ModelForm):
+    class Meta:
+        model = Person
+        fields = ['name', 'dob', 'sex', 'cellphone_number',
+                  'start_of_studying', 'end_of_studying', 'group', 'university_name']
 
 
-class PersonCreateForm(forms.Form):
-    SEX = (
-        ('Male', 'Male'),
-        ('Female', 'Female')
-    )
-    full_name = forms.CharField()
-    date_of_birth = forms.DateField()
-    sex = forms.ChoiceField(choices=SEX)
-    cellphone_number = forms.CharField()
-    start_of_studying = forms.DateField()
-    end_of_studying = forms.DateField()
-    studing_group = forms.CharField()
-    university_name = forms.CharField()
+class PersonCreateForm(ModelForm):
+    class Meta:
+        model = Person
+        fields = ['name', 'dob', 'cellphone_number',
+                  'start_of_studying', 'end_of_studying', 'group', 'university_name']
+
