@@ -13,7 +13,21 @@
         <p>Группа в университете - {{ person.group }}</p>
         <p>Университет - <br>{{ person.university_name }}</p>
         <button class="btn btn-outline-success my-2 my-sm-0"
-                onclick=location.href='{% url 'mainapp:edit' person.id %}'>Редактировать</button><br><br>
+                    onclick=location.href='{% url 'mainapp:edit' person.id %}'>Редактировать</button><br><br>
+        <hr>
+        {% for document in documents %}
+            <div class="jumbotron">
+                <p>Тип документа  - <br>{{ document.type }}</p>
+                <p>Номер - <br>{{ document.serial_number }}</p>
+                <p>Дата выпуска - <br>{{ document.date_of_issue }}</p>
+                <button class="btn btn-outline-success my-2 my-sm-0"
+                    onclick=location.href='{% url 'mainapp:doc_edit' document.id %}'>Редактировать</button><br><br>
+            </div>
+            <hr>
+        {% endfor %}
+
+        <button class="btn btn-outline-success my-2 my-sm-0"
+                onclick=location.href='{% url 'mainapp:doc_add' person.id %}'>Добавить документ</button><br><br>
         <button class="btn btn-primary" onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
     </div>
 {% endblock %}

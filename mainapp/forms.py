@@ -1,5 +1,5 @@
 from django import forms
-from .models import Person
+from .models import Person, Documents
 from django.forms import ModelForm
 
 
@@ -19,6 +19,17 @@ class SerchBar(ModelForm):
 class PersonCreateForm(ModelForm):
     class Meta:
         model = Person
-        fields = ['name', 'dob', 'cellphone_number',
+        fields = ['name', 'dob', 'cellphone_number', 'sex',
                   'start_of_studying', 'end_of_studying', 'group', 'university_name']
 
+
+class DocumentEditForm(ModelForm):
+    class Meta:
+        model = Documents
+        fields = ['serial_number', 'date_of_issue', 'scan_of_document']
+
+
+class DocumentCreateForm(ModelForm):
+    class Meta:
+        model = Documents
+        fields = ['type', 'serial_number', 'date_of_issue', 'scan_of_document']

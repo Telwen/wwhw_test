@@ -4,15 +4,15 @@
 
 {% block content %}
     <div class="jumbotron">
-        <form action="{% url 'mainapp:create' %}""
+        <form action="{% url 'mainapp:doc_add' person_id %}"
               method='post' enctype="multipart/form-data">
             {% csrf_token %}
 
-            {{per_create_form.as_p}}
+            {{create_form.as_p}}
 
 
             <br>
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Создать пользователя</button><br><br>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" formmethod="post">Добавить документ</button><br><br>
             <button class="btn btn-primary" onclick=location.href="{% url 'mainapp:index' %}">Вернуться на главную</button>
     </div>
 {% endblock %}
