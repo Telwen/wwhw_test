@@ -4,17 +4,20 @@
 
 {% block content %}
     <div>
-        <form action="{% url 'mainapp:index' %}"
+        <form action="{% url 'mainapp:generate' %}"
               method='post' enctype="multipart/form-data">
             {% csrf_token %}
             {{quantity}}
             <br>
-            <input type='submit' value='Сгенерировать'>
+            <input type='submit' value='Сгенерировать персон'>
         </form>
+        <br>
+
+        <button onclick=location.href="{% url 'mainapp:create' %}">Создать персону</button>
     </div>
 
     <div class="container">
-        {{ example }}
+
 
     </div>
 
