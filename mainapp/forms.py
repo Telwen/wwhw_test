@@ -14,14 +14,14 @@ class SerchBar(forms.Form):
 
 class PersonCreateForm(forms.Form):
     SEX = (
-        ('M', 'Male'),
-        ('F', 'Female')
+        ('Male', 'Male'),
+        ('Female', 'Female')
     )
-    name = forms.CharField()
-    dob = forms.DateField()
+    full_name = forms.CharField()
+    date_of_birth = forms.DateField()
     sex = forms.ChoiceField(choices=SEX)
     cellphone_number = forms.CharField()
     start_of_studying = forms.DateField()
     end_of_studying = forms.DateField()
-    group = forms.CharField()
+    studing_group = forms.CharField()
     university_name = forms.CharField()

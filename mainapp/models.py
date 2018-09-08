@@ -3,8 +3,8 @@ from django.db import models
 
 class Person(models.Model):
     SEX = (
-        ('M', 'Male'),
-        ('F', 'Female')
+        ('Male', 'Male'),
+        ('Female', 'Female')
     )
     name = models.CharField(verbose_name='Name, middle name and last name', max_length=64)
     dob = models.DateField(verbose_name='Date of birth')
