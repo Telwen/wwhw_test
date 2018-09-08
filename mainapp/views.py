@@ -1,17 +1,27 @@
 import datetime
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.urls import reverse
 from mimesis import Generic
 import random
 from .models import Person, Documents
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from .forms import Quantity, PersonCreateForm
+from .forms import Quantity, PersonCreateForm, SerchBar
 
 
-def index(request):
+def index(request, page=1):
+    persons = Person.objects.all()
+    paginator = Paginator(persons, per_page=6)
+    try:
+        person_paginator = paginator.page(page)
+    except PageNotAnInteger:
+        person_paginator = paginator.page(1)
+    except EmptyPage:
+        person_paginator = paginator.page(paginator.num_pages)
     context = {
         'quantity': Quantity,
+        'serch_bar': SerchBar,
+        'persons': person_paginator
     }
     return render(request, 'mainapp/index.html', context)
 
@@ -45,6 +55,15 @@ def serch(request):
     pass
 
 
+def person(request, id):
+    person = get_object_or_404(Person, id=id)
+
+    context = {
+        'person': person
+    }
+    return render(request, 'mainapp/person.html', context)
+
+
 def edit(request):
     return render(request, 'mainapp/edit.html')
 
@@ -54,13 +73,13 @@ def create(request):
         created_form = PersonCreateForm(request.POST)
         if created_form.is_valid():
             rec = Person(
-                name=created_form.cleaned_data['name'],
-                dob=created_form.cleaned_data['dob'],
+                name=created_form.cleaned_data['full_name'],
+                dob=created_form.cleaned_data['date_of_birth'],
                 sex=created_form.cleaned_data['sex'],
                 cellphone_number=created_form.cleaned_data['cellphone_number'],
                 start_of_studying=created_form.cleaned_data['start_of_studying'],
                 end_of_studying=created_form.cleaned_data['end_of_studying'],
-                group=created_form.cleaned_data['group'],
+                group=created_form.cleaned_data['studing_group'],
                 university_name=created_form.cleaned_data['university_name']
             )
             rec.save()

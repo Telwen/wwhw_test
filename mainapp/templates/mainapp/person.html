@@ -1,0 +1,16 @@
+{% extends 'mainapp/base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+    <div>
+        <p>{{ person.name }}</p>
+        <p>{{ person.dob }}</p>
+        <p>{{ person.sex }}</p>
+        <p>{{ person.cellphone_number }}</p>
+        <p>{{ person.start_of_studying }}</p>
+        <p>{{ person.end_of_studying }}</p>
+        <p>{{ person.group }}</p>
+        <p>{{ person.university_name }}</p>
+    </div>
+{% endblock %}

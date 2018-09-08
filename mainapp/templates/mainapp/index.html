@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div>
+    <div calss="header">
         <form action="{% url 'mainapp:generate' %}"
               method='post' enctype="multipart/form-data">
             {% csrf_token %}
@@ -15,8 +15,42 @@
 
         <button onclick=location.href="{% url 'mainapp:create' %}">Создать персону</button>
     </div>
-
+    <br>
     <div class="container">
+        <div class="person_holder">
+            {% for person in persons %}
+                <a class='person_link' href="{% url 'mainapp:person' person.id %}"><div class="person">
+                    <p>Имя - {{ person.name }}</p>
+                    <p>Дата рождения - {{ person.dob }}</p>
+                    <p>Пол - {{ person.sex }}</p>
+                    <p>Номер телефона - {{ person.cellphone_number }}</p>
+                    <p>Начало обучения - {{ person.start_of_studying }}</p>
+                    <p>Окончание обучения - {{ person.end_of_studying }}</p>
+                    <p>Группа в университете - {{ person.group }}</p>
+                    <p>Университет - <br>{{ person.university_name }}</p>
+                </div></a>
+            {% endfor %}
+            <div class="pagiantor">
+                {%  if persons.has_previous %}
+                    <a href="{% url 'mainapp:person_page' persons.previous_page_number %}"><</a>
+                {% endif %}
+                <span class="current">
+                    Страница {{ persons.number }} из {{ persons.paginator.num_pages }}
+                </span>
+                {% if persons.has_next %}
+                    <a href="{% url 'mainapp:person_page'  persons.next_page_number %}">></a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="serchbar">
+            <h2>Поиск в базе</h2>
+            <form action="{% url 'mainapp:serch' %}"
+              method='post' enctype="multipart/form-data">
+            {{serch_bar.as_p}}
+            <br>
+            <input type='submit' value='Поиск'>
+        </form>
+        </div>
 
 
     </div>

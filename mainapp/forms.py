@@ -9,7 +9,19 @@ class Quantity(forms.Form):
 
 
 class SerchBar(forms.Form):
-    pass
+    SEX = (
+        ('Male', 'Male'),
+        ('Female', 'Female')
+    )
+    full_name = forms.CharField()
+    date_of_birth = forms.DateField()
+    sex = forms.ChoiceField(choices=SEX)
+    cellphone_number = forms.CharField()
+    start_of_studying = forms.DateField()
+    end_of_studying = forms.DateField()
+    studing_group = forms.CharField()
+    university_name = forms.CharField()
+    passport_number = forms.CharField()
 
 
 class PersonCreateForm(forms.Form):
